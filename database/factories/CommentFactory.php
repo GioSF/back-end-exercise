@@ -22,9 +22,10 @@ class CommentFactory extends Factory
      */
     public function definition()
     {
+        $userId = rand(1,20);
         return [
             'body' => $this->faker->text(),
-            'user_id' => User::factory(),
+            'user_id' => $userId,
         ];
     }
 }
