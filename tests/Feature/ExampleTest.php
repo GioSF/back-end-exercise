@@ -126,19 +126,15 @@ class ExampleTest extends TestCase
                 }
                 if (($lessonsWatchedCounter == $amount) && ($amount == 5))
                 {
-                    $lessonAttachmentCounter = 1;
-                    while($lessonAttachmentCounter < 10)
-                    {
-                        $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
-                        $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
-                        $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
-                        $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
-                        $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
-                        $response = $this->get("/users/{$user->id}/achievements");
-                        $response->assertStatus(200);
-                        $response->assertJson($fiveLessonsStatus, $strict = false);
-                        $lessonAttachmentCounter++;
-                    }
+                    // Tries to "watch" the same lesson various times - it must not trigger new achievements
+                    $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
+                    $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
+                    $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
+                    $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
+                    $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
+                    $response = $this->get("/users/{$user->id}/achievements");
+                    $response->assertStatus(200);
+                    $response->assertJson($fiveLessonsStatus, $strict = false);
                 }
                 if (($lessonsWatchedCounter > 5) && ($lessonsWatchedCounter < 10) && ($amount == 5))
                 {
