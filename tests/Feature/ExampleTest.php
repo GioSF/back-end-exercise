@@ -126,7 +126,7 @@ class ExampleTest extends TestCase
                 }
                 if (($lessonsWatchedCounter == $amount) && ($amount == 5))
                 {
-                    // Tries to "watch" the same lesson various times - it must not trigger new achievements
+                    // Tries to "watch" the same lesson various times - it must not register new achievements of badges
                     $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
                     $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
                     $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
