@@ -4,8 +4,9 @@ namespace App\Models;
 
 use App\Models\LessonUser;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Lesson extends Model
@@ -37,6 +38,12 @@ class Lesson extends Model
             50 => '50 Lessons Watched',
         ];
     }
+
+    public function scopeWatched(Builder $query)
+	{
+		return $query->where('watched', true);
+	}
+
 
     public function getUnlockedAchievement(User $user)
     {
