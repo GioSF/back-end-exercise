@@ -101,7 +101,7 @@ class ExampleTest extends TestCase
             "remaining_to_unlock_next_badge" => 3
         ];
 
-        $response->assertJson($zeroLessonsStatus, $strict = false);
+        $response->assertExactJson($zeroLessonsStatus, $strict = false);
         $lessonsAchievementsList = Lesson::lessonsWatchedAchievementsMap();
         $lessons = Lesson::all();
 
@@ -116,13 +116,13 @@ class ExampleTest extends TestCase
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($firstLessonStatus, $strict = false);
+                    $response->assertExactJson($firstLessonStatus, $strict = false);
                 }
                 if (($lessonsWatchedCounter > 1) && ($lessonsWatchedCounter < 5) && ($amount == 1))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($firstLessonStatus, $strict = false);
+                    $response->assertExactJson($firstLessonStatus, $strict = false);
                 }
                 if (($lessonsWatchedCounter == $amount) && ($amount == 5))
                 {
@@ -134,49 +134,49 @@ class ExampleTest extends TestCase
                     $lesson->users()->updateExistingPivot($user->id, ['watched' => true]);
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($fiveLessonsStatus, $strict = false);
+                    $response->assertExactJson($fiveLessonsStatus, $strict = false);
                 }
                 if (($lessonsWatchedCounter > 5) && ($lessonsWatchedCounter < 10) && ($amount == 5))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($fiveLessonsStatus, $strict = false);
+                    $response->assertExactJson($fiveLessonsStatus, $strict = false);
                 }
                 if (($lessonsWatchedCounter == $amount) && ($amount == 10))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($tenLessonsstatus, $strict = false);
+                    $response->assertExactJson($tenLessonsstatus, $strict = false);
                 }
                 if (($lessonsWatchedCounter > 10) && ($lessonsWatchedCounter < 25) && ($amount == 10))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($tenLessonsstatus, $strict = false);
+                    $response->assertExactJson($tenLessonsstatus, $strict = false);
                 }
                 if (($lessonsWatchedCounter == $amount) && ($amount == 25))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($twentyFiveLessonsStatus, $strict = false);
+                    $response->assertExactJson($twentyFiveLessonsStatus, $strict = false);
                 }
                 if (($lessonsWatchedCounter > 25) && ($lessonsWatchedCounter < 50) && ($amount == 25))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($twentyFiveLessonsStatus, $strict = false);
+                    $response->assertExactJson($twentyFiveLessonsStatus, $strict = false);
                 }
                 if (($lessonsWatchedCounter == $amount) && ($amount == 50))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($fiftyLessonsStatus, $strict = false);
+                    $response->assertExactJson($fiftyLessonsStatus, $strict = false);
                 }
                 if (($lessonsWatchedCounter > 50) && ($amount == 50))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($fiftyLessonsStatus, $strict = false);
+                    $response->assertExactJson($fiftyLessonsStatus, $strict = false);
                 }
             }
         }
@@ -300,67 +300,67 @@ class ExampleTest extends TestCase
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($zeroCommentsStatus, $strict = false);
+                    $response->assertExactJson($zeroCommentsStatus);
                 }
                 if (($userCommentsCounter == $amount) && ($amount == 1))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($oneCommentStatus, $strict = false);
+                    $response->assertExactJson($oneCommentStatus, $strict = false);
                 }
                 if (($userCommentsCounter > 1) && ($userCommentsCounter < 3) && ($amount == 1))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($oneCommentStatus, $strict = false);
+                    $response->assertExactJson($oneCommentStatus, $strict = false);
                 }
                 if (($userCommentsCounter == $amount) && ($amount == 3))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($threeCommentsStatus, $strict = false);
+                    $response->assertExactJson($threeCommentsStatus, $strict = false);
                 }
                 if (($userCommentsCounter > 3) && ($userCommentsCounter < 5) && ($amount == 3))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($threeCommentsStatus, $strict = false);
+                    $response->assertExactJson($threeCommentsStatus, $strict = false);
                 }
                 if (($userCommentsCounter == $amount) && ($amount == 5))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($fiveCommentsStatus, $strict = false);
+                    $response->assertExactJson($fiveCommentsStatus, $strict = false);
                 }
                 if (($userCommentsCounter > 5) && ($userCommentsCounter < 10) && ($amount == 5))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($fiveCommentsStatus, $strict = false);
+                    $response->assertExactJson($fiveCommentsStatus, $strict = false);
                 }
                 if (($userCommentsCounter == $amount) && ($amount == 10))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($tenCommentsStatus, $strict = false);
+                    $response->assertExactJson($tenCommentsStatus, $strict = false);
                 }
                 if (($userCommentsCounter > 10) && ($userCommentsCounter < 20) && ($amount == 5))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($tenCommentsStatus, $strict = false);
+                    $response->assertExactJson($tenCommentsStatus, $strict = false);
                 }
                 if (($userCommentsCounter == $amount) && ($amount == 20))
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($twentyCommentsStatus, $strict = false);
+                    $response->assertExactJson($twentyCommentsStatus, $strict = false);
                 }
                 if ($userCommentsCounter > 20)
                 {
                     $response = $this->get("/users/{$user->id}/achievements");
                     $response->assertStatus(200);
-                    $response->assertJson($twentyCommentsStatus, $strict = false);
+                    $response->assertExactJson($twentyCommentsStatus, $strict = false);
                 }
 
                 $comment = new Comment;
