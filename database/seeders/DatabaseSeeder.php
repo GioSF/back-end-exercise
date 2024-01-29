@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $lessons = Lesson::factory()
-            ->count(200)
+            ->count(100)
             ->create();
         $users = User::factory()
             ->count(20)
@@ -27,20 +27,18 @@ class DatabaseSeeder extends Seeder
         $counter = 0;
 
         $lessons = Lesson::all();
-        $counter = 51;
 
         $users = User::all();
 
         foreach ($users as $user)
         {
-            $lessons = Lesson::where('id', '<', $counter)->get();
             foreach($lessons as $lesson)
             {
-                // $isWatched = true;
-                $isWatched = (bool) rand(0,2);
-                $user->lessons()->attach($lesson->id, ['watched' => $isWatched]);
+                $isWatched = false;
+                /* Change the proportion on (un)watched seeded lessons by increasing the second argument */
+                // $isWatched = (bool) rand(0,2);
+                $lesson->users()->attach($user->id, ['watched' => $isWatched]);
             }
-            $counter = $counter - 7;
         }
     }
 }
