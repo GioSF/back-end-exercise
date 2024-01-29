@@ -18,28 +18,13 @@ class DatabaseSeeder extends Seeder
         $lessons = Lesson::factory()
             ->count(100)
             ->create();
-        $users = User::factory()
-            ->count(20)
-            ->create();
-        $comment = Comment::factory()
-            ->count(500)
-            ->create();
-        $counter = 0;
 
-        $lessons = Lesson::all();
+        $users = User::factory()->create();
 
-        $users = User::all();
+        // $comment = Comment::factory()
+        //     ->count(500)
+        //     ->create();
 
-        foreach ($users as $user)
-        {
-            foreach($lessons as $lesson)
-            {
-                $isWatched = false;
-                /* Change the proportion on (un)watched seeded lessons by increasing the second argument */
-                // $isWatched = (bool) rand(0,2);
-                $lesson->users()->attach($user->id, ['watched' => $isWatched]);
-            }
-        }
     }
 }
 
